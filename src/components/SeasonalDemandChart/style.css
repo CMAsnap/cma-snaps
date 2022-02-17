@@ -1,0 +1,15 @@
+.test{
+   width: 90%;
+   margin: auto;
+}
+
+.seasonal-demand-container .recharts-cartesian-axis-tick-value{
+  fill: black;
+}
+ tspan{
+  color: rebeccapurple !important;
+}
+
+.seasonal-demand-container .recharts-xAxis .recharts-cartesian-axis-tick-line{
+  stroke: none;
+}
