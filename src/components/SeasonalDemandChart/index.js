@@ -9,8 +9,8 @@ const SeasonalDemandChart = () => {
   return (
     <div className="seasonal-demand-container">
       <BarChart
-        width={window.innerWidth - 100}
-        height={window.innerHeight - 100}
+        width={window.innerWidth - 50}
+        height={window.innerHeight - 50}
         data={SEASON_DATA}
       >
         <Bar dataKey="uv">
@@ -23,7 +23,7 @@ const SeasonalDemandChart = () => {
           ))}
         </Bar>
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis tickCount={9} type="number" dataKey="uv" />
         <Tooltip />
       </BarChart>
     </div>
