@@ -8,11 +8,11 @@ const SEASON_DATA = [
     uv: 40,
   },
   {
-    name: "March",
+    name: "Mar",
     uv: 20,
   },
   {
-    name: "April",
+    name: "Apr",
     uv: 80,
   },
   {
@@ -47,7 +47,7 @@ const SEASON_DATA = [
     name: "Dec",
     uv: 50,
   },
-  
+
 ];
 
 export {

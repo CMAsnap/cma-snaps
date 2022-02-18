@@ -17,7 +17,7 @@ import "./style.css";
 
 export const Home = () => {
   return (
-    <div style={{ width: "90%", margin: "auto" }}>
+    <div style={{ padding: 50, margin: "auto" }}>
       <Row gutter={[20, 20]} justify="center" align="middle">
         <Col sm={24} lg={8}>
           <HousingSupplyChart
@@ -33,7 +33,7 @@ export const Home = () => {
             footerData="Total number: 5 listings"
           />
         </Col>
-        <Col sm={24}  lg={8}>
+        <Col sm={24} lg={8}>
           <HousingSupplyChart
             durationHeading="0-6 Months Ago"
             data={HousingDataThree}
@@ -47,11 +47,9 @@ export const Home = () => {
         <div className="mt-8">
           <DOMChart />
         </div>
-        
+
         <div className="mt-8">
-          <Col md={24}>
-            <SeasonalDemandChart />
-          </Col>
+          <SeasonalDemandChart />
         </div>
       </Row>
     </div>

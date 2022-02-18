@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PieChart, Pie, Sector, Cell } from "recharts";
 
 import { COLORS_ARRAY } from "../../data/HousingData";
@@ -7,7 +7,6 @@ import { CLOSED_COLOR } from "../../utils/colors";
 import "./style.css";
 
 const HousingSupplyChart = ({ data, footerData, durationHeading }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const renderActiveShape = (props) => {
     const {
@@ -83,7 +82,6 @@ const HousingSupplyChart = ({ data, footerData, durationHeading }) => {
       </div>
       <PieChart width={400} height={400}>
         <Pie
-          activeIndex={activeIndex}
           activeShape={renderActiveShape}
           data={data}
           cx={200}
@@ -106,14 +104,14 @@ const HousingSupplyChart = ({ data, footerData, durationHeading }) => {
         </div>
         <div className="housing-chart-card-bottom-list">
           <div className="housing-chart-card-bottom-dot withdraw-dot"></div>
-          <div className="housing-chart-card-bottom-list-title">Withdraw</div>
+          <div className="housing-chart-card-bottom-list-title">Withdrawn</div>
           <div>(1/16)</div>
         </div>
 
         <div className="housing-chart-card-bottom-list">
           <div className="housing-chart-card-bottom-dot control-dot"></div>
           <div className="housing-chart-card-bottom-list-title">
-            Under contract
+            Under Contract
           </div>
           <div>(1/15)</div>
         </div>

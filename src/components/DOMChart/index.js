@@ -1,4 +1,3 @@
-import "./style.css";
 import React from "react";
 import {
   ComposedChart,
@@ -7,100 +6,92 @@ import {
   YAxis,
   Scatter,
   ResponsiveContainer,
+  Legend,
+  Tooltip,
+  ReferenceLine,
 } from "recharts";
+
 import {
+  ACTIVE_COLOR,
   CLOSED_COLOR,
-  CONRTOLED_COLOR,
+  EXPIRED_COLOR,
+  UNDER_CONTRACT_COLOR,
   WITHDRAW_COLOR,
 } from "../../utils/colors";
 
+import "./style.css";
+
 const data = [
   {
-    name: "Page A",
-    uv: null,
-    pv: null,
-    amt: null,
-    cnt: null,
-    yAxis: null,
+    closed: null,
+    expired: null,
+    withdrawn: null,
+    active: null,
+    underContract: null,
+    area: null,
   },
   {
-    name: "Page B",
-    uv: 200,
-    pv: 487.5,
-    amt: 600,
-    cnt: 487.5,
-    yAxis: 487.5,
+    closed: 200,
+    expired: 487.5,
+    withdrawn: null,
+    active: 487.5,
+    underContract: 400,
+    area: null,
   },
   {
-    name: "Page C",
-    uv: 300,
-    pv: 250,
-    amt: 600,
-    cnt: 350,
-    yAxis: 300,
+    closed: 300,
+    expired: null,
+    withdrawn: 600,
+    active: 350,
+    underContract: 300,
+    area: 600,
   },
   {
-    name: "Page D",
-    uv: 200,
-    pv: 320,
-    amt: 600,
-    cnt: 490,
-    yAxis: 262.5,
+    closed: null,
+    expired: 320,
+    withdrawn: 600,
+    active: 490,
+    underContract: 262.5,
+    area: 600,
   },
   {
-    name: "Page E",
-    uv: 150,
-    pv: 490,
-    amt: 600,
-    cnt: 170,
-    yAxis: 200,
+    closed: null,
+    expired: 490,
+    withdrawn: 600,
+    active: null,
+    underContract: 200,
+    area: 600,
   },
   {
-    name: "Page F",
-    uv: 170,
-    pv: 270,
-    amt: 600,
-    cnt: 370,
-    yAxis: 150,
+    closed: 170,
+    expired: 270,
+    withdrawn: null,
+    active: 370,
+    underContract: 150,
+    area: 600,
   },
   {
-    name: "Page F",
-    uv: 400,
-    pv: 430,
-    amt: 480,
-    cnt: 400,
-    yAxis: 150,
+    closed: 400,
+    expired: 430,
+    withdrawn: 480,
+    active: 400,
+    underContract: 150,
+    area: 600,
   },
   {
-    name: "Page F",
-    uv: 200,
-    pv: 270,
-    amt: 600,
-    cnt: 400,
-    yAxis: 150,
-  },
-  {
-    name: "Page F",
-    uv: 300,
-    pv: 370,
-    amt: 600,
-    cnt: 400,
-    yAxis: 150,
-  },
-  {
-    name: "Page F",
-    uv: 450,
-    pv: 480,
-    amt: 600,
-    cnt: 270,
-    yAxis: 150,
+    closed: 200,
+    expired: 270,
+    withdrawn: 600,
+    active: 400,
+    underContract: 150,
+    area: 600,
   },
 ];
 
 export default function DOMChart() {
   return (
     <div>
-      <ResponsiveContainer  
+      <ResponsiveContainer
         width={window.innerWidth - 50}
         height={window.innerHeight - 50}
       >
@@ -113,15 +104,19 @@ export default function DOMChart() {
             left: 20,
           }}
         >
-          {/* <CartesianGrid /> */}
-          <XAxis ticks={[1200, 1700, 2200, 3200]} />
-          <YAxis
-            domain={[150, 600]}
-            tickCount={6}
-            tickFormatter={(tick) => {
-              return `$ ${tick}`;
+          <XAxis
+            ticks={[1200, 1700, 2200, 3200]}
+            label={{
+              value: "Days on the market",
+              position: "bottom"
             }}
-            allowDecimals={true}
+          />
+          <YAxis
+            ticks={[0, 150, 262.5, 375, 487.5, 600]}
+            tickFormatter={(tick) => {
+              return `$${tick}`;
+            }}
+            allowDecimals
             unit="K"
             label={{
               value: "Housing Price",
@@ -131,10 +126,19 @@ export default function DOMChart() {
             }}
           />
 
-          <Area type="stepBefore" dataKey="amt" fill="#FFF8EF" stroke="white" />
-          <Scatter dataKey="cnt" fill={CLOSED_COLOR} />
-          <Scatter dataKey="uv" fill={CONRTOLED_COLOR} />
-          <Scatter dataKey="pv" fill={WITHDRAW_COLOR} />
+          <Legend verticalAlign="top" height={50} />
+
+          <Tooltip />
+
+          <ReferenceLine x={2} stroke="#fbb040" strokeDasharray="10" />
+
+          <Area type="stepBefore" dataKey="area" fill="#FFF8EF" stroke="white" />
+          <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} />
+          <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} />
+          <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} />
+          <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} />
+          <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} />
+
         </ComposedChart>
       </ResponsiveContainer>
     </div>
