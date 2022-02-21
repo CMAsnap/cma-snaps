@@ -7,18 +7,18 @@ import {
   Tooltip,
   Scatter,
   ResponsiveContainer,
-  ReferenceArea,
   Legend,
+  Area,
 } from "recharts";
 
-import { ACTIVE_COLOR, CLOSED_COLOR, CONRTOLED_COLOR, EXPIRED_COLOR, UNDER_CONTRACT_COLOR, WITHDRAW_COLOR } from "../../utils/colors";
+import { ACTIVE_COLOR, CLOSED_COLOR, EXPIRED_COLOR, UNDER_CONTRACT_COLOR, WITHDRAW_COLOR } from "../../utils/colors";
 
 const data = [
-  { underContract: 1200, trendLine: 150, closed: null, expired: 300, active: 600, price: 600 },
-  { underContract: 1700, trendLine: 300, closed: 487.5, expired: 600, active: 487.5, price: 500 },
-  { underContract: 2200, trendLine: 400, closed: 500, expired: 300, active: 375, price: 400 },
-  { underContract: 2700, trendLine: 500, closed: 400, expired: 400, active: 262.5, price: 150 },
-  { underContract: 3200, trendLine: 600, closed: 400, expired: 350, active: 150, price: 200 },
+  { underContract: 1200, trendLine: 200, lowerArea: 150, upperArea: 250, closed: null, expired: 220, active: 220, price: 600 },
+  { underContract: 1700, trendLine: 300, lowerArea: 250, upperArea: 350, closed: 487.5, expired: 280, active: 487.5, price: 500 },
+  { underContract: 2200, trendLine: 400, lowerArea: 350, upperArea: 450, closed: 370, expired: 380, active: 375, price: 400 },
+  { underContract: 2700, trendLine: 500, lowerArea: 450, upperArea: 550, closed: 400, expired: 470, active: 490, price: 150 },
+  { underContract: 3200, trendLine: 600, lowerArea: 550, upperArea: 650, closed: 400, expired: 590, active: 150, price: 200 },
 ];
 
 const PlotPriceChart = () => {
@@ -64,27 +64,51 @@ const PlotPriceChart = () => {
           }}
         />
 
+        <Legend verticalAlign="top" height={50} />
+
+        <Tooltip
+          formatter={(value, name) => {
+            if (name !== 'lowerArea' && name !== 'upperArea') {
+              return [value, name];
+            } else {
+              return [];
+            }
+          }}
+        />
+
+        <Area
+          type="monotone"
+          dataKey="upperArea"
+          stackId="1"
+          stroke="none"
+          fill={UNDER_CONTRACT_COLOR}
+          legendType="none"
+        />
+
+        <Area
+          type="monotone"
+          dataKey="lowerArea"
+          stackId="2"
+          stroke="none"
+          fill="white"
+          legendType="none"
+          fillOpacity="none"
+        />
+
+        <Line
+          dataKey="trendLine"
+          stroke={ACTIVE_COLOR}
+          strokeWidth="2"
+          activeDot={false}
+          legendType="none"
+        />
+
         <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} />
         <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} />
         <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} />
         <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} />
         <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} />
 
-        <Legend verticalAlign="top" height={50} />
-
-        <Tooltip />
-
-        {/* <ReferenceLine segment={[{ x: '1400', y: 300 }, { x: '2600', y: 400 }]} strokeWidth={2} stroke={ACTIVE_COLOR} /> */}
-        <ReferenceArea type="monotone" x1={1200} x2={3200} y1={262} y2={480} strokeOpacity={0.3} fill={UNDER_CONTRACT_COLOR} />
-
-        <Line
-          dataKey="trendLine"
-          stroke={CONRTOLED_COLOR}
-          dot={false}
-          strokeWidth="3"
-          activeDot={false}
-          legendType="none"
-        />
       </ComposedChart>
     </ResponsiveContainer>
   );
