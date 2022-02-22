@@ -123,20 +123,27 @@ export default function DOMChart() {
               dx: -15,
               position: "insideLeft",
             }}
+            yAxisId="left"
+          />
+          <YAxis
+            label={{ value: 'Consider lowering the price', position: 'insideTopRight', offset: 100, fill: '#fcb447' }}
+            yAxisId="right"
+            orientation="right"
+            axisLine={false}
           />
 
           <Legend verticalAlign="top" height={50} />
 
+          <ReferenceLine x={2} stroke="#fbb040" strokeDasharray="10" yAxisId="left" />
+
+          <Area type="stepBefore" dataKey="area" fill="#fef7ef" stroke="white" yAxisId="left" />
+          <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} yAxisId="left" />
+          <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} yAxisId="left" />
+          <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} yAxisId="left" />
+          <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} yAxisId="left" />
+          <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} yAxisId="left" />
+
           <Tooltip />
-
-          <ReferenceLine x={2} stroke="#fbb040" strokeDasharray="10" />
-
-          <Area type="stepBefore" dataKey="area" fill="#FFF8EF" stroke="white" />
-          <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} />
-          <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} />
-          <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} />
-          <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} />
-          <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} />
 
         </ComposedChart>
       </ResponsiveContainer>
