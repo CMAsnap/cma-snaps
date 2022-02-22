@@ -29,6 +29,7 @@ const data = [
     active: null,
     underContract: null,
     area: null,
+    day: "Mon",
   },
   {
     closed: 200,
@@ -37,6 +38,7 @@ const data = [
     active: 487.5,
     underContract: 400,
     area: null,
+    day: "Tue",
   },
   {
     closed: 300,
@@ -45,6 +47,7 @@ const data = [
     active: 350,
     underContract: 300,
     area: 600,
+    day: "Wed",
   },
   {
     closed: null,
@@ -53,6 +56,7 @@ const data = [
     active: 490,
     underContract: 262.5,
     area: 600,
+    day: "Thur",
   },
   {
     closed: null,
@@ -61,6 +65,7 @@ const data = [
     active: null,
     underContract: 200,
     area: 600,
+    day: "Fri",
   },
   {
     closed: 170,
@@ -69,6 +74,7 @@ const data = [
     active: 370,
     underContract: 150,
     area: 600,
+    day: "Sat",
   },
   {
     closed: 400,
@@ -77,15 +83,8 @@ const data = [
     active: 400,
     underContract: 150,
     area: 600,
-  },
-  {
-    closed: 200,
-    expired: 270,
-    withdrawn: 600,
-    active: 400,
-    underContract: 150,
-    area: 600,
-  },
+    day: "Sun",
+  }
 ];
 
 export default function DOMChart() {
@@ -105,7 +104,7 @@ export default function DOMChart() {
           }}
         >
           <XAxis
-            ticks={[1200, 1700, 2200, 3200]}
+            dataKey="day"
             label={{
               value: "Days on the market",
               position: "bottom"

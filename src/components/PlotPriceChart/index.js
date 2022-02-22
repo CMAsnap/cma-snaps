@@ -56,19 +56,34 @@ const PlotPriceChart = () => {
           ticks={[0, 150, 262.5, 375, 487.5, 600]}
           dataKey="price"
           unit="K"
+          yAxisId="left"
           label={{
             value: "Housing Price",
             angle: -90,
             dx: -14,
             position: "insideLeft",
           }}
+          orientation="left"
+        />
+
+        <YAxis
+          tick={false}
+          label={{
+            value: "Best Comps",
+            angle: 90,
+            dx: -14,
+            dy: -270
+          }}
+          yAxisId="right"
+          orientation="right"
+          axisLine={false}
         />
 
         <Legend verticalAlign="top" height={50} />
 
         <Tooltip
           formatter={(value, name) => {
-            if (name !== 'lowerArea' && name !== 'upperArea') {
+            if (name !== 'lowerArea' && name !== 'upperArea' && name !== 'trendLine') {
               return [value, name];
             } else {
               return [];
@@ -83,6 +98,7 @@ const PlotPriceChart = () => {
           stroke="none"
           fill={UNDER_CONTRACT_COLOR}
           legendType="none"
+          yAxisId="left"
         />
 
         <Area
@@ -93,6 +109,7 @@ const PlotPriceChart = () => {
           fill="white"
           legendType="none"
           fillOpacity="none"
+          yAxisId="right"
         />
 
         <Line
@@ -101,13 +118,14 @@ const PlotPriceChart = () => {
           strokeWidth="2"
           activeDot={false}
           legendType="none"
+          yAxisId="left"
         />
 
-        <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} />
-        <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} />
-        <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} />
-        <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} />
-        <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} />
+        <Scatter name="Closed" dataKey="closed" fill={CLOSED_COLOR} yAxisId="left" />
+        <Scatter name="Expired" dataKey="expired" fill={EXPIRED_COLOR} yAxisId="left" />
+        <Scatter name="Withdrawn" dataKey="withdrawn" fill={WITHDRAW_COLOR} yAxisId="left" />
+        <Scatter name="Active" dataKey="active" fill={ACTIVE_COLOR} yAxisId="left" />
+        <Scatter name="Under Contract" dataKey="underContract" fill={UNDER_CONTRACT_COLOR} yAxisId="left" />
 
       </ComposedChart>
     </ResponsiveContainer>

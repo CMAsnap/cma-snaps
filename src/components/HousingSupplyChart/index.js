@@ -82,6 +82,7 @@ const HousingSupplyChart = ({ data, footerData, durationHeading }) => {
       </div>
       <PieChart width={400} height={400}>
         <Pie
+          activeIndex={0}
           activeShape={renderActiveShape}
           data={data}
           cx={200}

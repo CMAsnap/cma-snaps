@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, Area, ComposedChart } from "recharts";
 
 import { SEASON_DATA } from "../../data/SeasonalData";
 import { PROGRESS_BAR_ORANGE_COLOR, GREY_COLOR } from "../../utils/colors";
@@ -12,10 +12,11 @@ const SeasonalDemandChart = () => {
       width={window.innerWidth - 50}
       height={window.innerHeight - 50}
     >
-      <BarChart
+      <ComposedChart
         data={SEASON_DATA}
         barSize={60}
       >
+
         <Bar dataKey="uv">
           {SEASON_DATA.map((entry, index) => (
             <Cell
@@ -45,8 +46,13 @@ const SeasonalDemandChart = () => {
           }}
         />
 
+        <Area
+          fill="#fef7ef"
+          dataKey="highlighted"
+        />
+
         <Tooltip cursor={false} filterNull />
-      </BarChart>
+      </ComposedChart>
     </ResponsiveContainer>
   );
 };
